@@ -30,3 +30,5 @@ def Main():
 
         except queue.Empty:
             pass
+
+Main()
