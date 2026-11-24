@@ -19,16 +19,14 @@ class InputHandler:
         try:
             k = key.char
             print(f"press {k}")
-            try:
-                k = key.char.lower()
-            except AttributeError:
-                return
+            k = k.lower()
 
-            if k in ('w', 's', 'p', 'o') and k not in pressed_keys: # w forward s back p disconnect o switchmotor
+            if k in ('w', 's') and k not in pressed_keys:
                 pressed_keys.add(k)
-                if len(pressed_keys) == 1:
-                    a, = pressed_keys
-                    send_packet(f"{a}")
+                send_packet(k)
+            elif k in ('p', 'o') and k not in pressed_keys:
+                pressed_keys.add(k)
+                send_packet(k)
 
         except AttributeError:
             pass
@@ -41,10 +39,10 @@ class InputHandler:
             except AttributeError:
                 return
 
-            if k in ('w', 's'):  # w forward s back p disconnect o switchmotor
+            if k in ('w', 's', 'p', 'o'):
                 pressed_keys.discard(k)
-                print("release")
-                send_packet(f"x")
+                if k in ('w', 's'):
+                    send_packet("x")
         except AttributeError:
             pass
 

@@ -29,7 +29,7 @@ def Main():
             command = cmd_queue.get_nowait()
             print("Incoming Command:" + command)
 
-            if command == "tm":
+            if command == "o":
                 toggleMotors()
             elif command == "w":
                 if motor == "a":
@@ -46,7 +46,7 @@ def Main():
                 wd.motor_a = 0
                 wd.motor_b = 0
 
-            elif command == "dc":
+            elif command == "p":
                 break
 
         except queue.Empty:
