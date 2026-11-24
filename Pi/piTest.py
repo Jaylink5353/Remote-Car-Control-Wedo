@@ -16,7 +16,7 @@ def Main():
             command = cmd_queue.get_nowait()
             print("Incoming Command:" + command)
 
-            if command == "tm":
+            if command == "o":
                 print("toggle")
 
             elif command == "w":
@@ -28,7 +28,7 @@ def Main():
             elif command == "x":
                 print("stop")
 
-            elif command == "dc":
+            elif command == "p":
                 print("disconnect")
 
         except queue.Empty:

@@ -18,6 +18,7 @@ class InputHandler:
     def on_press(self, key):
         try:
             k = key.char
+            print(f"press {k}")
             try:
                 k = key.char.lower()
             except AttributeError:
@@ -42,9 +43,8 @@ class InputHandler:
 
             if k in ('w', 's'):  # w forward s back p disconnect o switchmotor
                 pressed_keys.discard(k)
-                if len(pressed_keys) == 1:
-                    a, = pressed_keys
-                    send_packet(f"x")
+                print("release")
+                send_packet(f"x")
         except AttributeError:
             pass
 
