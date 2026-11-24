@@ -1,0 +1,13 @@
+[project]
+name = "remote-car-control-wedo"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Jaymes G", email = "jaymes.5353@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "wedo-fork>=1.1.1.1",
+]
+

@@ -1,0 +1,2 @@
+echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0694", ATTRS{idProduct}=="0003", MODE="0666", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/99-lego-wedo.rules
+    sudo udevadm control --reload-rules && sudo udevadm trigge
