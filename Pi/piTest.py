@@ -1,11 +1,14 @@
 from piSocket import piSocketLib
 import queue
 import time
+from threading import Thread
 
 cmd_queue = queue.Queue()
 socketServer = piSocketLib(command_queue=cmd_queue)
 
 def Main():
+    Thread(target=socketServer.listen, daemon=True).start()
+
     while True:
         time.sleep(0.01)
 

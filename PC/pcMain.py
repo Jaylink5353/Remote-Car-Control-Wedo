@@ -12,6 +12,7 @@ if sys.platform.startswith("linux"):
 
 client_socket = None
 pressed_keys = set()
+target_ip = None
 
 class InputHandler:
     def on_press(self, key):
@@ -58,7 +59,8 @@ class InputHandler:
         self.listener.stop()
 
 def init_socket(ip):
-    global client_socket
+    global client_socket, target_ip
+    target_ip = ip
     try:
         client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         client_socket.settimeout(10)
@@ -73,19 +75,20 @@ def init_socket(ip):
 def send_packet(data_string):
     global client_socket
     if client_socket is None:
-        init_socket()
+        init_socket(target_ip)
     if client_socket:
         try:
-            client_socket.sendto(data_string.encode("utf-8"), (ip, 5001))
+            client_socket.sendto(data_string.encode("utf-8"), (target_ip, 5001))
         except Exception as e:
             print("Packet send failed")
             client_socket = None
-            init_socket()
+            init_socket(target_ip)
 
 def main():
     ip = input("Target IP: ")
-    if ip == '':
+    if not ip:
         print("Put in IP")
+        sys.exit(1)
     if ip == 'q':
         sys.exit(0)
 

@@ -2,6 +2,7 @@
 # Jaylink5353 on 11/23/2026
 import queue
 import time
+from threading import Thread
 from wedo_fork import WeDo
 from piSocket import piSocketLib
 
@@ -19,6 +20,8 @@ def toggleMotors():
         motor = "a"
 
 def Main():
+    Thread(target=socketServer.listen, daemon=True).start()
+
     while True:
         time.sleep(0.01)
 
