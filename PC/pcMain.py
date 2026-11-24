@@ -42,7 +42,11 @@ class InputHandler:
             if k in ('w', 's', 'p', 'o'):
                 pressed_keys.discard(k)
                 if k in ('w', 's'):
-                    send_packet("x")
+                    remaining = pressed_keys.intersection(('w', 's'))
+                    if remaining:
+                        send_packet(next(iter(remaining)))
+                    else:
+                        send_packet("x")
         except AttributeError:
             pass
 
@@ -99,6 +103,7 @@ def main():
     handler = InputHandler()
 
     def close():
+        send_packet("x")
         handler.stop()
         root.destroy()
 

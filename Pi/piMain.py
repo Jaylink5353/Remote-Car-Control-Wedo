@@ -14,6 +14,8 @@ socketServer = piSocketLib(command_queue=cmd_queue)
 
 def toggleMotors():
     global motor
+    wd.motor_a = 0
+    wd.motor_b = 0
     if motor == "a":
         motor = "b"
     elif motor == "b":
