@@ -34,12 +34,6 @@ def Main():
                 elif motor == "b":
                     wd.motor_b = 100
 
-            elif command == "w":
-                if motor == "a":
-                    wd.motor_a = 100
-                elif motor == "b":
-                    wd.motor_b = 100
-
             elif command == "s":
                 if motor == "a":
                     wd.motor_a = -100
@@ -57,3 +51,5 @@ def Main():
 
     wd.motor_a = 0
     wd.motor_b = 0
+
+Main()
